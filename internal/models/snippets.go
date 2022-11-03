@@ -5,6 +5,7 @@ import (
 	"errors"
 	"time"
 
+	"github.com/jackc/pgx/v4/pgxpool"
 	"github.com/jackc/pgx/v5"
 )
 
@@ -17,7 +18,7 @@ type Snippet struct {
 }
 
 type SnippetModel struct {
-	DB *pgx.Conn
+	DB *pgxpool.Pool
 }
 
 func (m *SnippetModel) Insert(title string, content string, expires int) (int, error) {
